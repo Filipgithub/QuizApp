@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.example.filip.quizapp.Main2Activity">
+
+    <TextView
+        android:id="@+id/questionField"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/answerOne"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_weight="1"
+        android:background="@drawable/quiz_background"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/answerTwo"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/quiz_background"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/answerThree"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/quiz_background"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/answerFour"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/quiz_background"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
+
