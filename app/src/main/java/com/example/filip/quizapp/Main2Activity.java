@@ -74,7 +74,9 @@ public class Main2Activity extends AppCompatActivity {
         final Intent intent = new Intent(this, Main2Activity.class);
 
 
-        //geting random 10 questions
+        //geting random 10 questions while number of questions is >0
+        //when numOfQuestions is 0 game is over
+        //numOfQuestions,score(static fields in MainActivity)
         if (MainActivity.numOfQuestions > 0) {
             answer = "";
             try {
@@ -91,6 +93,7 @@ public class Main2Activity extends AppCompatActivity {
         }
 
 
+        //on click if answer is green than it is correct else it is wrong
         answerOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,6 +179,8 @@ public class Main2Activity extends AppCompatActivity {
         return questions;
     } */
 
+
+  //seting random questions from questions array(MainActivity)
     public void setRandomQuestion() throws InterruptedException {
         int i = rndQuestion.nextInt(10);
         randomQuestion = MainActivity.questions.get(i);
@@ -213,6 +218,7 @@ public class Main2Activity extends AppCompatActivity {
         params.put("name", MainActivity.name);
         params.put("score", MainActivity.score);
 
+        //sending name of player and score to server
         client.post("http://zoran.ogosense.net/api/set-score", params, new TextHttpResponseHandler() {
                     @Override
                     public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {

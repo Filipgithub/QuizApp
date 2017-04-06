@@ -49,13 +49,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         scoreList = (TextView) findViewById(R.id.scoreList);
+        //intent for start to play quiz
         final Intent intent = new Intent(this, Main2Activity.class);
+        //static number of questions
         numOfQuestions = 10;
+        //start score for each player
         score = 0;
-        //here we keep scores
+        //here we keep scores for offline playing
         scoresForBoard = new ArrayList<>();
+
+        //button for starting quiz
         Button startQuiz = (Button) findViewById(R.id.startQuiz);
+
+        //init for questions array
         questions = new ArrayList<>();
 
 
@@ -68,10 +76,13 @@ public class MainActivity extends AppCompatActivity {
         startQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //alert dialog for player to enter the name
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
                 LayoutInflater inflater = MainActivity.this.getLayoutInflater();
+
                 View view = inflater.inflate(R.layout.dialog_custom, null);
+
                 final EditText editText = (EditText) view.findViewById(R.id.editText);
                 builder.setTitle("Enter a name: ")
                         // Specify the list array, the items to be selected by default (null for none),
@@ -117,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void updateScore() {
+        //commented lines are for my own questions
 
       /*  if( !scoreList.getText().equals("") || numOfQuestions == 0)
         {  */
@@ -130,9 +142,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setScoreBoard() {
+
         AsyncHttpClient client = new AsyncHttpClient();
 
-
+        //getting scores form sever
         client.get("http://zoran.ogosense.net/api/get-leaderboard", new JsonHttpResponseHandler() {
 
 
@@ -196,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
     public void getJSONQuestions() {
         AsyncHttpClient client = new AsyncHttpClient();
 
-
+        //getting questions
         client.get("http://zoran.ogosense.net/api/get-questions", new JsonHttpResponseHandler() {
 
             @Override
@@ -214,6 +227,9 @@ public class MainActivity extends AppCompatActivity {
 
                     JSONArray questionS = response.getJSONArray("data");
 
+
+                    //parsing questions for my onw purposes,to be in format
+                    // question@answer1,answer2,answer3,answer3,answer4,correct_answer
                     for (int i = 0; i < questionS.length(); i++) {
                         JSONObject q = questionS.getJSONObject(i);
                         String question = q.getString("question");
